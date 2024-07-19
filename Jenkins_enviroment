@@ -6,12 +6,14 @@ pipeline {
         CRED_ID = 'key'
         GIT_URL = 'https://github.com/Pradeep-hc/app.git'
     }
+
         stages {
-        stage ('checkout') {
-            steps {
-                git branch: ${env.BRANCH},
-                credentialsId: ${env.CREd_Id},
-                url: ${env.GIT_URL}
+
+            stage ('checkout') {
+                steps {
+                    git branch: ${env.BRANCH},
+                    credentialsId: ${env.CREd_Id},
+                    url: ${env.GIT_URL}
 
             }
         }
