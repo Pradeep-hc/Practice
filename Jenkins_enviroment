@@ -23,11 +23,7 @@ pipeline {
                 sh 'ls -lrt'
             }
         }
-        pipeline {
 
-agent any
-
-stages {
     stage('BUILD_main') {
         when {
             branch 'main'
@@ -37,7 +33,7 @@ stages {
             sh 'ls -lrt'
 
         }
-    }
+    
     stage('BUILD_dev') {
         when {
             branch 'dev'
@@ -49,5 +45,4 @@ stages {
     }
 }
 }
-    }
 }
