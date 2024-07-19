@@ -17,7 +17,7 @@ pipeline {
 
     stage('BUILD2'){
             steps {
-               checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'key', url: 'https://github.com/Pradeep-hc/app.git']])
+               checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'key', url:  'https://github.com/Pradeep-hc/pub-repo.git]])
             }
         }
     }
