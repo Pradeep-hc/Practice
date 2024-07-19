@@ -14,5 +14,11 @@ pipeline {
                sh 'ls -lrt'
             }
         }
+
+    stage('BUILD'){
+            steps {
+               sh 'ls -lrt'
+            }
+        }
     }
 }
