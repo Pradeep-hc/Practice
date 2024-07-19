@@ -21,12 +21,5 @@ pipeline {
                 sh "sleep 5"
             }
         }
-
-        stage('END'){
-            steps {
-                echo "Last stage"
-                sh "sleep 5"
-            }
-        }
     }
 }
