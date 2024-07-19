@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('CHECKOUT'){
             steps {
-                    git branch: 'main', credentialsId: 'key', url: 'https://github.com/Pradeep-hc/app.git'
+                    git branch: 'dev', credentialsId: 'key', url: 'https://github.com/Pradeep-hc/app.git'
             
             }
         }
