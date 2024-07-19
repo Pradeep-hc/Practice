@@ -1,0 +1,26 @@
+pipeline {
+
+    agent any
+
+    stages {
+        stage('BUILD_main') {
+            when {
+                branch 'main'
+            }
+            steps {
+                echo "Building the app from main branch"
+                sh 'ls -lrt'
+
+            }
+        }
+        stage('BUILD_dev') {
+            when {
+                branch 'dev'
+            }
+            steps {
+                echo "Building the app from dev branch"
+                sh 'ls -lrt'
+            }
+        }
+    }
+}
