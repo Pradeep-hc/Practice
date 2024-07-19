@@ -18,12 +18,6 @@ pipeline {
             }
         }
 
-             stage('check checkout') {
-                steps {
-                sh 'ls -lrt'
-            }
-        }
-
             stage('BUILD_main') {
                 when {
                 branch 'main'
