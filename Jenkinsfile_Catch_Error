@@ -41,13 +41,14 @@ pipeline {
                 echo "This is STAGE 4"
             }
         }
+    }
     
     post {
         always {
             cleanWs()
         }
     }
-    }
+    
 }
 
 
