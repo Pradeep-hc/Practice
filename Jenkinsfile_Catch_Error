@@ -14,8 +14,7 @@ pipeline {
         stage('STAGE 2') {
             steps {
                 echo "STAGE 2"
-                try {
-                     echo "This is STAGE 2"
+                try { echo "This is STAGE 2"
                      sh 'sleep 1'
                      sh 'exit 1'
                 } catch (Exception e) {
