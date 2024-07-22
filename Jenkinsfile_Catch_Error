@@ -17,9 +17,9 @@ pipeline {
                      echo "This is STAGE 2"
                      sh 'sleep 1'
                      sh 'exit 1'
-                } catch (Exception e) {
+                } catch () {
                     echo "Got an exception"
-                    echo "$e"
+                    
                 }
             }
         }
