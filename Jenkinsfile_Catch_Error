@@ -1,8 +1,6 @@
 pipeline {
     agent any
 
-    boolean testStatus = true
-
     stages {
         stage('STAGE 1') {
             steps {
@@ -15,6 +13,7 @@ pipeline {
 
         stage('STAGE 2') {
             steps {
+                echo "STAGE 2"
                 try {
                      echo "This is STAGE 2"
                      sh 'sleep 1'
@@ -22,7 +21,7 @@ pipeline {
                 } catch (Exception e) {
                     echo "Got an exception"
                     echo "$e"
-                    testStatus = false
+                    
                 }
             }
         }
