@@ -4,9 +4,10 @@ pipeline {
     stages {
         stage('STAGE 1') {
             steps {
+                catchError() {
                 echo "This is STAGE 1"
                 sg 'exit 1'
-
+                }
             }
         }
 
