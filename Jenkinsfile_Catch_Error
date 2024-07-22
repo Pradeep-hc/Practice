@@ -20,8 +20,8 @@ pipeline {
                     echo "Got an exception"
                     echo "$e"
                 }
-                }
             }
+        }
 
         
         stage('STAGE 3') {
