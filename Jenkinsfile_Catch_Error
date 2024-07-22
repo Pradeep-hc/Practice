@@ -9,7 +9,7 @@ pipeline {
                 sg 'ls -lrt'
                 }
             }
-        }
+        
 
         stage('STAGE 2') {
             steps {
@@ -30,3 +30,4 @@ stage('STAGE 4') {
             }
         }
     }
+}
