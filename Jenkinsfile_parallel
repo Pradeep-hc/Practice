@@ -1,0 +1,29 @@
+pipeline {
+    agent any
+    stages {
+        stage('BUILD') {
+            steps {
+
+            }
+        }
+        stage('Parallel Testing') {
+            parallel {
+                stage ('Test in Chrome') {
+                    steps {
+                    echo "Testing in Chrome"
+                    }
+                }
+                stage('Test in opera') {
+                    steps {
+                        echo "Testing in opera"
+                    }
+                }
+                stage('Test in firfox') {
+                    steps {
+                        echo "Testing in firefox"
+                    }
+                }
+            }
+        }
+    }
+}
