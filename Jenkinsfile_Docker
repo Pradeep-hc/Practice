@@ -4,8 +4,10 @@ pipeline {
     stages {
         stage ('Checkout') {
             steps {
-                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'app', url: 'https://github.com/Pradeep-hc/itd-devops.git']])
-                        }
+                checkout([$class: 'GitSCM',
+                        branches: [[name: 'main']],
+                        userRemoteConfigs: [[url: 'https://github.com/harshaprakash100/java_app.git',
+                        credentialsId: 'github_hp']]])                        }
         }
         
         stage ('Build') {
