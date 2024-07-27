@@ -4,7 +4,10 @@ pipeline {
     stages {
         stage ('Checkout') {
             steps {
-                https://github.com/jaintpharsha/jenkins_pipeline_jobs_may24.git
+                checkout([$class: 'GitSCM',
+                        branches: [[name: 'main']],
+                        userRemoteConfigs: [[url: 'https://github.com/harshaprakash100/java_app.git',
+                        credentialsId: 'github_hp']]])
             }
         }
         
