@@ -5,9 +5,9 @@ pipeline {
         stage('Checkout') {
             steps {
                 https://github.com/jaintpharsha/jenkins_pipeline_jobs_may24.git
-
             }
         }
+        
         stage ('Build') {
             steps {
                 sh 'ls -lrt'
