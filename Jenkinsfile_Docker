@@ -12,7 +12,7 @@ pipeline {
             steps {
                 dir('./calculator_app') {
                     sh 'ls -lrt'
-                
+                    sh 'docker build -t pradeephc/java_app .'
                 }
             }
         }
