@@ -5,8 +5,7 @@ pipeline {
         stage('Code Checkout') {
             steps {
                 https://github.com/Pradeep-hc/JavaApp.git
-
-            }
+              }
         }
     }
 }
