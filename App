@@ -24,7 +24,7 @@ pipeline {
         stage ('Integration Test') {
             steps {
                 dir('./calculator_app') {
-                    sh 'mvn integration Test'
+                    sh 'mvn integration-Test'
                 }
             }
         }
