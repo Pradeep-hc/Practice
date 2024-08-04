@@ -5,7 +5,25 @@ pipeline {
         stage('Code Checkout') {
             steps {
                 checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'github_hp', url: 'https://github.com/Pradeep-hc/JavaApp.git']])
-              }
+            }
+        }
+
+        stage ('Unit Test') {
+            steps {
+                sh 'mvn test'
+            }
+        }
+
+        stage ('Integration Test') {
+            steps {
+                sh 'mvn integration Test'
+            }
+        }
+
+        stage ('Load Testing') {
+            steps {
+                sh 'mvn verify'
+            }
         }
     }
 }
