@@ -4,7 +4,7 @@ pipeline{
     stages{
         stage{
             parallel{
-                stage{
+                stage('First'){
                     stages{
                         stage('Checkout1'){
                             steps{
@@ -20,7 +20,7 @@ pipeline{
                         }
                     }
                 }
-                stage{
+                stage('Second'){
                     stages{
                         stage('Checkout'){
                             steps{
