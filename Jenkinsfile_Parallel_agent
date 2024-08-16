@@ -5,7 +5,7 @@ pipeline {
         stage('Build and run') {
             parallel {
                 stage('sl2-agent-pipeline') {
-                 //   agent {label 'slave_machine2'}
+                    agent {label 'slave_machine2'}
                     stages{
                         stage('Checkout') {
                             steps {
@@ -26,7 +26,7 @@ pipeline {
                 }
 
                 stage('sl1-agent-pipeline') {
-                  //  agent {label 'slave_machine1'}
+                    agent {label 'slave_machine1'}
                     stages {
                         stage('Checkout') {
                             steps {
