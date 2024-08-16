@@ -1,40 +1,50 @@
 pipeline{
     agent any
 
+    stages{
+        stage('Checkout and Build') {
             parallel{
                 stage('First'){
                     stages{
-                        stage('Checkout1'){
-                            steps{
+                        stage('Checkout') {
+                            steps {
                                 checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'github_hp', url: 'https://github.com/Pradeep-hc/JavaApp.git']])
-
                             }
                         }
-                        stage('Checkout2'){
-                            steps{
-                                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'github_hp', url: 'https://github.com/Pradeep-hc/itd-devops.git']])
-
+                        stage('Build') {
+                            steps {
+                                echo 'Building..'
                             }
                         }
-                    }
+                        stage('Test') {
+                            steps {
+                                echo 'Testing..'
+                            }
+                        }
+                    }                    
                 }
+
                 stage('Second'){
-                    stages{
-                        stage('Checkout'){
-                            steps{
+                                        stages {
+                        stage('Checkout') {
+                            steps {
                                 checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'github_hp', url: 'https://github.com/Pradeep-hc/itd-devops.git']])
-                                
                             }
                         }
-                        stage{
-                            steps('Build'){
-                                echo "Building Stage"
+
+                        stage('Build'){
+                            steps{
+                                echo 'Building..'
                             }
                         }
                         stage('Test'){
-                            echo "Testing stage"
+                            steps{
+                                echo 'Testing..'
+                            }
                         }
                     }
-                }
+                } 
             }
+        }
+    }
 }
