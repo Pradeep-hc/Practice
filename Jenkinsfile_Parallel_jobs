@@ -1,50 +1,65 @@
-pipeline{
+pipeline {
     agent any
 
-    stages{
-        stage('Checkout and Build') {
-            parallel{
-                stage('First'){
-                    stages{
-                        stage('Checkout') {
-                            steps {
-                                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'github_hp', url: 'https://github.com/Pradeep-hc/JavaApp.git']])
-                            }
+    stages {
+        stage('Checkout Repositories') {
+            parallel {
+                stage('Checkout Repo 1') {
+                    steps {
+                        script {
+                            // Checkout first repository
+                            checkout([$class: 'GitSCM',
+                                branches: [[name: '*/main']],
+                                userRemoteConfigs: [[url: 'https://github.com/your-org/first-repo.git']]
+                            ])
                         }
-                        stage('Build') {
-                            steps {
-                                echo 'Building..'
-                            }
-                        }
-                        stage('Test') {
-                            steps {
-                                echo 'Testing..'
-                            }
-                        }
-                    }                    
+                    }
                 }
-
-                stage('Second'){
-                                        stages {
-                        stage('Checkout') {
-                            steps {
-                                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'github_hp', url: 'https://github.com/Pradeep-hc/itd-devops.git']])
-                            }
-                        }
-
-                        stage('Build'){
-                            steps{
-                                echo 'Building..'
-                            }
-                        }
-                        stage('Test'){
-                            steps{
-                                echo 'Testing..'
+                stage('Checkout Repo 2') {
+                    steps {
+                        script {
+                            dir('second-repo') { // Use a separate directory for the second repo
+                                checkout([$class: 'GitSCM',
+                                    branches: [[name: '*/main']],
+                                    userRemoteConfigs: [[url: 'https://github.com/your-org/second-repo.git']]
+                                ])
                             }
                         }
                     }
-                } 
+                }
             }
+        }
+
+        stage('Build Repositories') {
+            parallel {
+                stage('Build Repo 1') {
+                    steps {
+                        script {
+                            // Build steps for first repository
+                            echo "Building Repo 1"
+                            // Replace with your actual build commands
+                        }
+                    }
+                }
+                stage('Build Repo 2') {
+                    steps {
+                        script {
+                            dir('second-repo') { // Ensure you're in the correct directory
+                                // Build steps for second repository
+                                echo "Building Repo 2"
+                                // Replace with your actual build commands
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    post {
+        always {
+            echo 'Cleaning up...'
+            // Any cleanup actions
         }
     }
 }
