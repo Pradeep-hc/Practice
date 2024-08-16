@@ -1,0 +1,44 @@
+pipeline{
+    agent any
+
+    stages{
+        stage{
+            parallel{
+                stage{
+                    stages{
+                        stage('Checkout1'){
+                            steps{
+                                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'github_hp', url: 'https://github.com/Pradeep-hc/JavaApp.git']])
+
+                            }
+                        }
+                        stage('Checkout2'){
+                            steps{
+                                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'github_hp', url: 'https://github.com/Pradeep-hc/itd-devops.git']])
+
+                            }
+                        }
+                    }
+                }
+                stage{
+                    stages{
+                        stage('Checkout'){
+                            steps{
+                                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'github_hp', url: 'https://github.com/Pradeep-hc/itd-devops.git']])
+                                
+                            }
+                        }
+                        stage{
+                            steps('Build'){
+                                echo "Building Stage"
+                            }
+                        }
+                        stage('Test'){
+                            echo "Testing stage"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
