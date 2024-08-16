@@ -7,11 +7,8 @@ pipeline {
                 stage('Checkout Repo 1') {
                     steps {
                         script {
-                            // Checkout first repository
-                            checkout([$class: 'GitSCM',
-                                branches: [[name: '*/main']],
-                                userRemoteConfigs: [[url: 'https://github.com/your-org/first-repo.git']]
-                            ])
+                                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'github_hp', url: 'https://github.com/Pradeep-hc/JavaApp.git']])
+                            
                         }
                     }
                 }
@@ -19,10 +16,8 @@ pipeline {
                     steps {
                         script {
                             dir('second-repo') { // Use a separate directory for the second repo
-                                checkout([$class: 'GitSCM',
-                                    branches: [[name: '*/main']],
-                                    userRemoteConfigs: [[url: 'https://github.com/your-org/second-repo.git']]
-                                ])
+                                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'github_hp', url: 'https://github.com/Pradeep-hc/itd-devops.git']])
+                                
                             }
                         }
                     }
